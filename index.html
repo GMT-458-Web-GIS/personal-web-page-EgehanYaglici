@@ -8,15 +8,17 @@
   <!-- Link to the external stylesheets -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mail_animation.css">
-  <link rel="stylesheet" href="linkedin_animation.css"> <!-- Yeni LinkedIn CSS dosyası -->
+  <link rel="stylesheet" href="linkedin_animation.css">
+  <link rel="stylesheet" href="phone_number_animation.css">
   <!-- Include FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body data-theme="light">
 <div class="container">
   <header>
-    <h1>Egehan Yaglici</h1>
-    <p>Geomatics Engineer</p>
+    <h1>Welcome To My Page</h1> <!-- Başlık yazısı olarak 'Welcome To My Page' eklendi -->
     <div class="theme-toggle">
       <span>🌞</span>
       <label class="theme-switch">
@@ -25,57 +27,88 @@
       </label>
       <span>🌙</span>
     </div>
-    <ul class="contact-info">
-      <!-- Email link with animated mailbox -->
-      <li>
-        <a href="mailto:egehanyaglici007@gmail.com" class="contact-link">
-          <!-- Envelope Animation Container -->
-          <div class="envelope-container">
-            <!-- Envelope Structure -->
-            <div class="envelope">
-              <!-- Envelope Flap (Kapak) -->
-              <div class="envelope-flap"></div>
-              <!-- Letter Element (Initially Hidden) -->
-              <div class="letter">
-                <div class="letter-header"></div>
-                <div class="letter-body">
-                  <div class="line"></div>
-                  <div class="line short"></div>
-                  <div class="line"></div>
-                  <div class="line short"></div>
-                </div>
-                <div class="letter-footer"></div>
-                <!-- Stamp Element -->
-                <div class="stamp">
-                  <div class="stamp-inner"></div>
+  </header>
+
+  <!-- Alt Kısım (3 Bölüm Yapısı) -->
+  <div class="content-wrapper">
+    <!-- Sol Bölüm: Contact Information -->
+    <section class="left-section">
+      <h2>Contact Information</h2>
+      <ul class="contact-info">
+        <!-- Email link with animated mailbox -->
+        <li>
+          <a href="mailto:egehanyaglici007@gmail.com" class="contact-link">
+            <div class="envelope-container">
+              <div class="envelope">
+                <div class="envelope-flap"></div>
+                <div class="letter">
+                  <div class="letter-header"></div>
+                  <div class="letter-body">
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                  </div>
+                  <div class="letter-footer"></div>
+                  <div class="stamp">
+                    <div class="stamp-inner"></div>
+                  </div>
                 </div>
               </div>
+              <div class="shadow"></div>
             </div>
-            <!-- Shadow for the Envelope -->
-            <div class="shadow"></div>
-          </div>
-        </a>
-      </li>
-      <!-- LinkedIn link with animation -->
-      <li>
-        <a href="https://tr.linkedin.com/in/egehan-ya%C4%9Fl%C4%B1c%C4%B1" class="linkedin-link" target="_blank">
-          <!-- LinkedIn Animation Container -->
-          <div class="linkedin-animation">
-            <!-- LinkedIn Icon -->
-            <div class="linkedin-icon">
-              <i class="fab fa-linkedin"></i>
+          </a>
+        </li>
+
+        <!-- LinkedIn link with animation -->
+        <li>
+          <a href="https://tr.linkedin.com/in/egehan-ya%C4%9Fl%C4%B1c%C4%B1" class="linkedin-link" target="_blank">
+            <div class="linkedin-animation">
+              <div class="linkedin-icon">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <span class="linkedin-text" id="linkedin-text">
+            <span class="space">&nbsp;</span>LinkedIn
+          </span>
             </div>
-            <!-- Başlangıçta LinkedIn yazısı ve manuel boşluk -->
-            <span class="linkedin-text" id="linkedin-text">
-              <span class="space">&nbsp;</span>LinkedIn
-            </span>
+          </a>
+        </li>
+
+        <!-- Phone number with animation and copy functionality -->
+        <li>
+          <div class="phone-container">
+            <div class="phone-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <!-- Başlangıçta 'Click for Copy Me!' metni ve Hover ile numara -->
+            <div class="phone-number">
+              <span class="number">Click For Copy Number!</span> <!-- Numara metnini burada değiştirdik -->
+            </div>
           </div>
-        </a>
-      </li>
-      <li>Phone: +90 553 416 31 03</li>
-      <li>Location: Antalya, Turkiye</li>
-    </ul>
-  </header>
+          <div id="copy-message" class="copy-message">
+            Phone number copied to clipboard! 📋
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Orta Bölüm: Profil Resmi ve İsim -->
+    <section class="center-section">
+      <div class="profile-pic">
+        <!-- Profil resminin kaynağını "profile_pic.jpeg" dosyası olarak güncelledik -->
+        <img src="profile_pic.jpeg" alt="Profile Picture" />
+      </div>
+      <h2 class="name">Egehan Yaglici</h2>
+    </section>
+
+    <!-- Sağ Bölüm: Harita -->
+    <section class="right-section">
+      <h2>My University Department!</h2>
+      <!-- Harita Konteyneri -->
+      <div id="map"></div> <!-- "style" özelliğini kaldırdık -->
+    </section>
+
+  </div>
 
   <section>
     <h2>About Me</h2>
@@ -128,6 +161,9 @@
   </footer>
 </div>
 
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- Link to the external JavaScript file -->
 <script src="app.js"></script>
 </body>

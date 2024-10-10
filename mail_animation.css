@@ -1,7 +1,7 @@
 /* Envelope and Letter Container */
 .envelope-container {
   position: relative;
-  width: 60px; /* Envelope width */
+  width: 120px; /* Envelope width */
   height: 40px; /* Envelope height */
   cursor: pointer;
 }
@@ -32,7 +32,7 @@
 }
 
 .envelope-flap::before {
-  content: "G-MAIL";
+  content: "CLICK FOR MAIL";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,7 +46,7 @@
 .letter {
   position: absolute;
   bottom: -50%; /* Initially hidden */
-  left: 5%;
+  left: 10%;
   width: 80%;
   height: 120%;
   background: white;
@@ -134,7 +134,7 @@
   position: absolute;
   top: 42px;
   left: 50%;
-  width: 60px;
+  width: 80px;
   height: 10px;
   background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   border-radius: 50%;

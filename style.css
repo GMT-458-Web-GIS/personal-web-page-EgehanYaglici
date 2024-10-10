@@ -1,4 +1,4 @@
-/* General Styles */
+/* Genel Stil Ayarları */
 body, html {
   margin: 0;
   padding: 0;
@@ -8,22 +8,12 @@ body, html {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-body {
-  background: var(--bg-color);
-  color: var(--text-color);
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
 :root {
-  --bg-color: #f4f4f4;
-  --text-color: #333;
-  --primary-color: #3498db;
-  --secondary-color: #f4f4f4;
-  --border-color: #ddd;
+  --bg-color: #f9f9f9;
+  --text-color: #444444;
+  --primary-color: #5c7cfa;
+  --secondary-color: #ffffff;
+  --border-color: #e0e0e0;
 }
 
 [data-theme="dark"] {
@@ -34,35 +24,61 @@ body {
   --border-color: #444;
 }
 
+/* Dark Mode için Telefon Numarası ve Simgesinin Renk Ayarı */
+[data-theme="dark"] .phone-number,
+[data-theme="dark"] .phone-icon,
+[data-theme="dark"] .phone-number::after {
+  color: #f1f1f1 !important; /* Koyu temada açık renk ve öncelikli stil */
+}
+
+/* Hover Durumunda da Geçerli Olmasını Sağlamak */
+[data-theme="dark"] .phone-container:hover .phone-number,
+[data-theme="dark"] .phone-container:hover .phone-icon,
+[data-theme="dark"] .phone-container:hover .phone-number::after {
+  color: #f1f1f1 !important; /* Hover durumunda aynı renk */
+}
+
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
 .container {
-  width: 80%;
+  width: 90%;
   background: var(--secondary-color);
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-color);
-  transition: background 0.3s ease, border-color 0.3s ease;
   overflow: hidden;
 }
 
+/* Header Yapısı */
 header {
   text-align: center;
-  padding: 30px;
   background-color: var(--primary-color);
   color: white;
   border-radius: 15px 15px 0 0;
   position: relative;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5em;
-  font-weight: bold;
+  font-size: 2em;
 }
 
+/* Tema Geçiş Butonu */
 .theme-toggle {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   display: flex;
   align-items: center;
@@ -115,85 +131,144 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+/* İçerik Bölümlerini Dengelemek ve Sabit Ebatlar Vermek */
+.content-wrapper {
+  display: flex; /* Flex düzenini etkinleştir */
+  justify-content: space-between; /* Bölümler arasındaki boşlukları koru */
+  align-items: stretch; /* Bölümlerin yüksekliğini eşitle */
+  gap: 20px; /* Bölümler arasında sabit boşluk */
+}
+
+/* Bölümlerin Sabit Genişlik ve Yükseklik Ayarları */
+.left-section, .center-section, .right-section {
+  flex: 1; /* Her bölümün aynı genişlikte olmasını sağla */
+  min-height: 350px; /* Minimum yüksekliği sabit tut */
+  max-height: 350px; /* Maksimum yüksekliği de sabit tut */
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  background: var(--secondary-color);
+}
+
+/* Harita Alanının Sabit Boyutlarda Kalması */
+#map {
+  width: 90%; /* Haritanın genişliğini sağ bölümün %90'ı yap */
+  height: 250px; /* Haritanın yüksekliği */
+  border-radius: 15px; /* Köşeleri yuvarla */
+  margin: 20px auto; /* Kenarlardan ve üstten boşluk bırakarak ortala */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+
+/* Contact Information Stil Düzenlemesi */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* Contact Information Başlığını Yukarı Taşıma */
+.left-section h2 {
+  position: relative; /* Konumlandırmayı etkinleştir */
+  top: -10px; /* Yukarıya taşıma miktarını artırmak için negatif değer kullan */
+}
+
+/* Sağ Bölüm İçerisindeki İçeriği Ortalama */
+.right-section {
+  display: flex; /* Flex düzenini etkinleştir */
+  flex-direction: column; /* İçeriği dikey yönde hizala */
+  align-items: center; /* İçeriği yatayda ortala */
+  justify-content: center; /* İçeriği dikeyde ortala */
+  text-align: center; /* Yazıları yatayda ortala */
+}
+
+/* Sağ Bölümdeki Başlık Stil Ayarları */
+.right-section h2 {
+  margin: 0; /* Üst ve alt boşlukları sıfırla */
+  padding-bottom: 10px; /* Başlık ile harita arasında biraz boşluk bırak */
+}
+
+/* Harita için Ek Stil Düzenlemesi */
+.right-section #map {
+  margin-top: 20px; /* Başlık ile harita arasında ekstra boşluk */
+}
+
+
+/* Orta Bölüm: Profil Resmi ve İsim */
+.center-section {
+  display: flex;
+  flex-direction: column; /* İçeriği dikey olarak hizala */
+  align-items: center; /* İçeriği yatayda ortala */
+  justify-content: flex-start; /* Öğeleri dikeyde üstten başlat */
+  margin-top: 0px; /* Orta bölümün üstten biraz aşağıda başlaması */
+}
+
+/* Profil Resmi Ayarları */
+.profile-pic {
+  width: 200px; /* Resmin genişliği */
+  height: 200px; /* Resmin yüksekliği */
+  border-radius: 50%; /* Yuvarlak şekil */
+  overflow: hidden; /* Resmin taşmasını engelle */
+  margin: 0px auto; /* Resmi ortala ve yukarıdan boşluk bırak */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+/* Profil Resmi İçindeki Resim */
+.profile-pic img {
+  width: 105%; /* Resmi kapsayıcı genişliğe oturt */
+  height: auto; /* Yüksekliği otomatik ayarla */
+  display: block; /* Görüntüyü blok öğe yap */
+}
+
+
+/* İsim Yazısı Stil Ayarları */
+.name {
+  margin: 0; /* Üst ve alt boşlukları sıfırla */
+  padding: 0; /* İç boşlukları sıfırla */
+  font-size: 1.8em; /* Yazı boyutunu ayarla */
+  text-align: center; /* Yazıyı ortala */
+  color: var(--primary-color); /* Varsayılan tema rengini kullan */
+}
+
 .contact-info {
   list-style-type: none;
   padding: 0;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 15px;
-  align-items: center;
-}
-
-.contact-info li {
-  font-size: 1em;
-  text-align: center;
   margin: 0;
-  position: relative;
-  width: 20%; /* Sabit genişlik */
-  min-width: 150px; /* Minimum genişlik */
-}
-
-/* Değişiklik: Sabit genişlik ve boyut */
-.contact-info li {
-  width: 25%; /* Genişliği sabitle */
-  position: relative;
-}
-
-.contact-link,
-.linkedin-link {
   display: flex;
+  flex-direction: column;
+  gap: 15px; /* Elemanlar arası boşluk */
   align-items: center;
-  gap: 10px;
-  font-size: 1em;
-  background: var(--primary-color);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
+}
+
+/* İletişim Bilgisi Öğeleri */
+.contact-info li {
+  margin: 0;
+}
+
+/* LinkedIn İkonunun Email ile Arasında Ekstra Boşluk */
+.contact-info li:nth-child(2) { /* contact-info'nun 2. öğesi (LinkedIn) */
+  margin-top: 20px; /* Yukarıdan ekstra boşluk ekle */
+}
+
+
+.contact-link, .linkedin-link, .phone-container {
+  font-size: 1.1em;
+  background: transparent; /* Çerçevesiz ve arka plan olmadan */
+  color: var(--primary-color);
   text-decoration: none;
-  transition: background 0.3s ease, transform 0.3s ease;
+  display: block;
 }
 
-.contact-link:hover, .linkedin-link:hover {
-  background: var(--bg-color);
+.contact-link:hover, .linkedin-link:hover, .phone-container:hover {
+  background: none;
+  color: var(--primary-color);
+  transform: none; /* Hover sırasında herhangi bir büyüme efekti yok */
+}
+
+
+.name {
+  font-size: 1.8em;
   color: var(--primary-color);
 }
 
-/* Değişiklik: Hover sırasında `transform` kullanılmadığı için `transform` özelliklerini kaldırdık */
-.contact-link:hover, .linkedin-link:hover {
-  background: var(--bg-color);
-  color: var(--primary-color);
-  transform: none; /* Hover animasyonlarında `transform` etkisiz */
-}
 
-/* Ekstra stil: Sabit hizalama ve görsel düzen için `display: flex` ve `justify-content: center` kullanıldı */
-.contact-info li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 95%;
-    padding: 15px;
-  }
-
-  .contact-info {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  header h1 {
-    font-size: 2em;
-  }
-
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-  }
-
-  /* Mobilde öğe boyutlarını düzelt */
-  .contact-info li {
-    width: 100%;
-  }
-}

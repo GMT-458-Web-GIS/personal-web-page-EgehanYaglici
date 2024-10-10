@@ -1,0 +1,89 @@
+/* Telefon Konteyneri */
+.phone-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  justify-content: center; /* Merkezi hizalama */
+  padding: 10px;
+}
+
+/* Telefon İkonu */
+.phone-icon {
+  font-size: 1.5em;
+  color: #2c3e50;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Telefon Numarası */
+.phone-number {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #2c3e50;
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-number .number {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1; /* Başlangıçta 'Click for Copy Me!' görünür */
+}
+
+/* Hover Durumunda Animasyon */
+.phone-container:hover .number {
+  /* Hover durumunda 'Click for Copy Me!' yazısı kaybolur ve numara görünür */
+  opacity: 0; /* Başlangıç metni kaybolur */
+  transform: translateY(-20px); /* Yukarı kaydırma efekti */
+}
+
+/* Hover Durumunda Telefon Numarasının Ortaya Çıkması */
+.phone-container:hover .phone-number::after {
+  content: "+90 553 416 31 03"; /* Telefon numarası eklendi */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  color: #2c3e50;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px); /* İlk başta aşağıda konumlandırıldı */
+}
+
+.phone-container:hover .phone-number::after {
+  opacity: 1; /* Hover durumunda numara görünür hale gelir */
+  transform: translateY(0); /* Yukarı doğru çıkar */
+}
+/* Hover Durumunda Telefon Simgesinin Animasyonu */
+.phone-container:hover .phone-icon {
+  opacity: 1; /* Hover durumunda simge görünür hale gelir */
+  transform: translateY(-5px) scale(1.1); /* Hafif yukarı kayma ve büyütme efekti */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Geçiş efektleri */
+}
+
+/* Kopyalama Mesajı */
+.copy-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #27ae60;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-size: 1em;
+}
+
+/* Kopyalama Mesajı Görünür Durum */
+.copy-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
