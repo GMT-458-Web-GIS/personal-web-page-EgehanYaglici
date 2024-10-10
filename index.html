@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Egehan Yaglici's Resume">
   <title>Egehan Yaglici - CV</title>
-  <!-- Link to the external stylesheet -->
+  <!-- Link to the external stylesheets -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mail_animation.css">
+  <link rel="stylesheet" href="linkedin_animation.css"> <!-- Yeni LinkedIn CSS dosyası -->
+  <!-- Include FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body data-theme="light">
 <div class="container">
@@ -22,8 +26,52 @@
       <span>🌙</span>
     </div>
     <ul class="contact-info">
-      <li>Email: <a href="mailto:egehanyaglici007@gmail.com">egehanyaglici007@gmail.com</a></li>
-      <li>LinkedIn: <a href="https://tr.linkedin.com/in/egehan-ya%C4%9Fl%C4%B1c%C4%B1">Egehan Yağlıcı</a></li>
+      <!-- Email link with animated mailbox -->
+      <li>
+        <a href="mailto:egehanyaglici007@gmail.com" class="contact-link">
+          <!-- Envelope Animation Container -->
+          <div class="envelope-container">
+            <!-- Envelope Structure -->
+            <div class="envelope">
+              <!-- Envelope Flap (Kapak) -->
+              <div class="envelope-flap"></div>
+              <!-- Letter Element (Initially Hidden) -->
+              <div class="letter">
+                <div class="letter-header"></div>
+                <div class="letter-body">
+                  <div class="line"></div>
+                  <div class="line short"></div>
+                  <div class="line"></div>
+                  <div class="line short"></div>
+                </div>
+                <div class="letter-footer"></div>
+                <!-- Stamp Element -->
+                <div class="stamp">
+                  <div class="stamp-inner"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Shadow for the Envelope -->
+            <div class="shadow"></div>
+          </div>
+        </a>
+      </li>
+      <!-- LinkedIn link with animation -->
+      <li>
+        <a href="https://tr.linkedin.com/in/egehan-ya%C4%9Fl%C4%B1c%C4%B1" class="linkedin-link" target="_blank">
+          <!-- LinkedIn Animation Container -->
+          <div class="linkedin-animation">
+            <!-- LinkedIn Icon -->
+            <div class="linkedin-icon">
+              <i class="fab fa-linkedin"></i>
+            </div>
+            <!-- Başlangıçta LinkedIn yazısı ve manuel boşluk -->
+            <span class="linkedin-text" id="linkedin-text">
+              <span class="space">&nbsp;</span>LinkedIn
+            </span>
+          </div>
+        </a>
+      </li>
       <li>Phone: +90 553 416 31 03</li>
       <li>Location: Antalya, Turkiye</li>
     </ul>

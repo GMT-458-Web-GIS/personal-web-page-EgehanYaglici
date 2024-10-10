@@ -1,4 +1,4 @@
-/* Genel Stiller */
+/* General Styles */
 body, html {
   margin: 0;
   padding: 0;
@@ -58,10 +58,6 @@ header h1 {
   margin: 0;
   font-size: 2.5em;
   font-weight: bold;
-}
-
-header p {
-  font-size: 1.2em;
 }
 
 .theme-toggle {
@@ -130,83 +126,51 @@ input:checked + .slider:before {
 
 .contact-info li {
   font-size: 1em;
-  transition: transform 0.3s;
   text-align: center;
+  margin: 0;
+  position: relative;
+  width: 20%; /* Sabit genişlik */
+  min-width: 150px; /* Minimum genişlik */
 }
 
-.contact-info li a {
-  color: white;
+/* Değişiklik: Sabit genişlik ve boyut */
+.contact-info li {
+  width: 25%; /* Genişliği sabitle */
+  position: relative;
+}
+
+.contact-link,
+.linkedin-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1em;
   background: var(--primary-color);
-  padding: 8px 20px;
+  color: white;
+  padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
-  display: inline-block;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.contact-info li:hover {
-  transform: scale(1.05);
-}
-
-.contact-info li a:hover {
+.contact-link:hover, .linkedin-link:hover {
   background: var(--bg-color);
   color: var(--primary-color);
 }
 
-section {
-  margin: 30px 0;
-  padding: 30px;
-  background: var(--secondary-color);
-  border: 2px solid var(--border-color);
-  border-radius: 10px;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-section h2 {
-  font-size: 1.8em;
+/* Değişiklik: Hover sırasında `transform` kullanılmadığı için `transform` özelliklerini kaldırdık */
+.contact-link:hover, .linkedin-link:hover {
+  background: var(--bg-color);
   color: var(--primary-color);
-  border-bottom: 2px solid var(--primary-color);
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+  transform: none; /* Hover animasyonlarında `transform` etkisiz */
 }
 
-section p, section ul {
-  font-size: 1em;
-  color: var(--text-color);
-  line-height: 1.5;
+/* Ekstra stil: Sabit hizalama ve görsel düzen için `display: flex` ve `justify-content: center` kullanıldı */
+.contact-info li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-section ul {
-  list-style-type: disc;
-  margin: 10px 0;
-  padding-left: 20px;
-}
-
-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9em;
-}
-
-footer p {
-  margin: 5px 0;
-  color: var(--text-color);
-}
-
-/* Animasyon ve Geçişler */
-.container, section, .contact-info li a {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  } }
 
 @media (max-width: 768px) {
   .container {
@@ -226,5 +190,10 @@ footer p {
   .theme-toggle {
     top: 10px;
     right: 10px;
+  }
+
+  /* Mobilde öğe boyutlarını düzelt */
+  .contact-info li {
+    width: 100%;
   }
 }
