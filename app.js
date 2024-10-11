@@ -30,48 +30,74 @@ linkedinLink.addEventListener('mouseleave', () => {
 
 // Telefon numarasını kopyalama işlevi
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Telefon Numarası Kopyalama İşlevi ve Animasyonlar
   const phoneContainer = document.querySelector('.phone-container');
   const phoneNumberElement = document.querySelector('.phone-number');
   const copyMessage = document.getElementById('copy-message');
 
-  // Kopyalanacak numarayı sabit bir değişken olarak tanımla
+
   const phoneNumber = "+90 553 416 31 03"; // Gerçek telefon numarası
-  const initialText = "Click For Copy Number!";
+  const initialText = "Click For Copy Number!"; // Başlangıç metni
 
   // Başlangıçta "Click For Copy Number!" yazısını göster
   phoneNumberElement.textContent = initialText;
 
-  // Mouse ile üzerine gelindiğinde gerçek telefon numarasını göster
+  // Mouse ile üzerine gelindiğinde telefon numarasını aşağıdan yukarıya animasyon ile göster
   phoneContainer.addEventListener('mouseenter', () => {
-    phoneNumberElement.style.opacity = 0; // Önce opacity 0 yap
+    phoneNumberElement.style.opacity = 0; // Opacity'yi önce gizle
+    phoneNumberElement.style.transform = 'translateY(20px)'; // Numaranın aşağıda başlamasını sağla
+
+
     setTimeout(() => {
-      phoneNumberElement.textContent = phoneNumber; // Metni değiştir
-      phoneNumberElement.style.opacity = 1; // Sonra tekrar görünür yap
+      phoneNumberElement.textContent = phoneNumber; // Gerçek telefon numarasını göster
       phoneContainer.classList.add('show-number'); // Animasyonu etkinleştir
-    }, 300); // 0.3 saniye bekle, sonra metni değiştir ve görünür yap
+    }, 100);
+
+    // Animasyonlu geçişi tetikle
+    setTimeout(() => {
+      phoneNumberElement.style.opacity = 1; // Opacity'yi görünür yap
+      phoneNumberElement.style.transform = 'translateY(0)'; // Yukarı kaydır
+    }, 200);
   });
 
-  // Mouse çekildiğinde tekrar "Click For Copy Number!" yazısına dön
+  // Mouse çekildiğinde tekrar "Click For Copy Number!" yazısına dön ve animasyonu aşağıdan yukarıya uygula
   phoneContainer.addEventListener('mouseleave', () => {
-    phoneNumberElement.style.opacity = 0; // Önce opacity 0 yap
+    phoneNumberElement.style.opacity = 0; // Önce opacity'yi gizle
+    phoneNumberElement.style.transform = 'translateY(20px)'; // Numaranın aşağıya kaymasını sağla
+
     setTimeout(() => {
-      phoneNumberElement.textContent = initialText; // Metni değiştir
-      phoneNumberElement.style.opacity = 1; // Sonra tekrar görünür yap
+      phoneNumberElement.textContent = initialText; // Başlangıç metnine dön
       phoneContainer.classList.remove('show-number'); // Animasyonu kapat
-    }, 300); // 0.3 saniye bekle, sonra metni değiştir ve görünür yap
+    }, 200);
+
+    // Metni değiştirdikten sonra animasyonlu geçişi tetikle
+    setTimeout(() => {
+      phoneNumberElement.style.opacity = 1; // Opacity'yi tekrar görünür yap
+      phoneNumberElement.style.transform = 'translateY(0)'; // Numara yukarı kaydır
+    }, 200);
   });
 
   // Telefon numarasını kopyalama işlevi
   phoneContainer.addEventListener('click', () => {
-    // Sabit değişkende tuttuğumuz gerçek telefon numarasını kopyala
-    navigator.clipboard.writeText(phoneNumber)
-      .then(() => {
-        // Kopyalama işlemi başarılı olduğunda mesajı göster
-        showCopyMessage();
-      })
-      .catch(err => {
-        console.error('Failed to copy the phone number: ', err);
-      });
+    // Clipboard API'nin desteklenip desteklenmediğini kontrol et
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          showCopyMessage();
+        })
+        .catch(err => {
+          console.error('Failed to copy the phone number: ', err);
+        });
+    } else {
+      // Clipboard API desteklenmiyorsa `execCommand` yöntemini kullan
+      const tempInput = document.createElement('input');
+      tempInput.value = phoneNumber;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy'); // Eski yöntemle kopyalama
+      document.body.removeChild(tempInput);
+      showCopyMessage(); // Kopyalama mesajını göster
+    }
   });
 
   // Kopyalama mesajını gösterme fonksiyonu
@@ -81,29 +107,28 @@ document.addEventListener('DOMContentLoaded', () => {
       copyMessage.classList.remove('show');
     }, 2000); // 2 saniye sonra mesajı gizle
   }
-});
 
+  // 2. Leaflet Harita ve Marker Güncellemesi
+  const map = L.map('map').setView([39.86564155076201, 32.733861597060915], 17); // Hacettepe Üniversitesi Harita Mühendisliği Koordinatları
 
-// Leaflet.js ile haritayı başlatma ve Hacettepe Üniversitesi Harita Mühendisliği Bölümü'nü gösterme
-const map = L.map('map').setView([39.86564155076201, 32.733861597060915], 17); // Güncellenmiş koordinatlar
+  // OpenStreetMap taban harita katmanı ekleme
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-// OpenStreetMap taban harita katmanı ekleme
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+  // Hacettepe Üniversitesi Harita Mühendisliği Binası için marker ekleme
+  const marker = L.marker([39.86564155076201, 32.733861597060915]).addTo(map);
 
-// Hacettepe Üniversitesi Harita Mühendisliği Binası için marker ekleme
-const marker = L.marker([39.86564155076201, 32.733861597060915]).addTo(map);
+  // Popup mesajını oluştur
+  const popup = L.popup().setContent('Department of Geomatics Engineering');
 
-// Popup mesajını oluştur
-const popup = L.popup().setContent('Department of Geomatics Engineering');
+  // Marker üzerine gelince popup mesajını gösterme
+  marker.on('mouseover', () => {
+    marker.bindPopup(popup).openPopup(); // Popup mesajını göster
+  });
 
-// Marker üzerine gelince popup mesajını gösterme
-marker.on('mouseover', () => {
-  marker.bindPopup(popup).openPopup(); // Popup mesajını göster
-});
-
-// Marker üzerinden çıkılınca popup mesajını kapatma
-marker.on('mouseout', () => {
-  marker.closePopup(); // Popup mesajını gizle
+  // Marker üzerinden çıkılınca popup mesajını kapatma
+  marker.on('mouseout', () => {
+    marker.closePopup(); // Popup mesajını gizle
+  });
 });
