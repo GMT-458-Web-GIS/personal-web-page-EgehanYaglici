@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Real Time GNSS Data Monitoring Application">
+  <title>Projects - Real Time GNSS Data Monitoring Application</title>
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="projects.css">
+</head>
+<body data-theme="light"> <!-- Tema geçişi için 'data-theme' attribute'u -->
+<div class="container">
+  <!-- Header Yapısı -->
+  <header>
+    <h1>Real Time GNSS Data Monitoring Application</h1>
+    <p>This project demonstrates real-time monitoring and visualization of GNSS data using advanced techniques. There are several features, Real time Ground Track Map, Skyplot, SPP, Ionospheric VTEC Map.All data types can be saved for further analysis these files can be a txt or csv format. Main work flow It connects a NTRIP Client and take the binary data. This data parsed via external libraries and user can be setting all the features etc. features on-off, update times, data saves. It took 1 year for total development. For more details and explanations click the image circle.</p>
+  </header>
+  <!-- Tema geçişi için toggle butonu -->
+  <div class="theme-toggle-slider">
+    <span>🌞</span>
+    <label class="theme-switch">
+      <input type="checkbox" id="themeSlider" onclick="toggleThemeWithSlider()">
+      <span class="slider"></span>
+    </label>
+    <span>🌙</span>
+  </div>
+
+
+  <!-- Daire ve Animasyon Yapısı İçin Bölme -->
+  <div class="circle-container" id="circle">
+    <!-- SVG Daire Yapısı -->
+    <svg id="animated-circle" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+      <!-- Merkezi Daire ve Metin -->
+      <circle class="central-circle" cx="500" cy="500" r="100" />
+      <text x="50%" y="50%" text-anchor="middle" font-size="36px" dy=".3em">Image Gallery</text>
+
+      <!-- Dönen Daireler -->
+      <circle class="st st--medium" cx="500" cy="500" r="160">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="st st--small" cx="500" cy="500" r="240">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 500 500" to="-360 500 500" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="st st--xlarge" cx="500" cy="500" r="320">
+        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <!-- Görsellerin Bulunduğu Konteyner -->
+    <div class="outer-images">
+      <!-- Görseller, project_page_images klasöründen yükleniyor -->
+      <img src="project_page_images/anasayfa.png" class="circle-image" alt="Anasayfa">
+      <img src="project_page_images/ground_track1.png" class="circle-image" alt="Ground Track 1">
+      <img src="project_page_images/ground_track2.png" class="circle-image" alt="Ground Track 2">
+      <img src="project_page_images/ground_track3.png" class="circle-image" alt="Ground Track 3">
+      <img src="project_page_images/spp.png" class="circle-image" alt="SPP">
+      <img src="project_page_images/iono.png" class="circle-image" alt="IONO">
+      <img src="project_page_images/settings.png" class="circle-image" alt="Settings">
+      <img src="project_page_images/account.png" class="circle-image" alt="Account">
+      <img src="project_page_images/save.png" class="circle-image" alt="Save">
+    </div>
+  </div>
+
+  <!-- Ek Bölme -->
+  <section class="info-section">
+    <h2>Additional Project Information</h2>
+    <p>This section can include more detailed explanations, diagrams, or links to related content.</p>
+  </section>
+
+  <!-- Popup yapısı -->
+  <div class="popup">
+    <div class="popup-content">
+      <span class="close-button">&times;</span> <!-- Kapatma butonu -->
+      <img class="popup-image" src="" alt="Image" /> <!-- Popup içindeki büyük resim -->
+      <p class="popup-description"></p> <!-- Görsel açıklaması -->
+      <div class="popup-controls">
+        <button class="prev-button">Previous</button> <!-- Geri butonu -->
+        <button class="next-button">Next</button> <!-- İleri butonu -->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Link to External JS -->
+<script src="projects.js"></script>
+</body>
+</html>

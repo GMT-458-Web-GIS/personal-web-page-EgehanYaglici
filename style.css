@@ -200,7 +200,9 @@ input:checked + .slider:before {
   flex-direction: column; /* İçeriği dikey olarak hizala */
   align-items: center; /* İçeriği yatayda ortala */
   justify-content: flex-start; /* Öğeleri dikeyde üstten başlat */
-  margin-top: 0px; /* Orta bölümün üstten biraz aşağıda başlaması */
+  margin-top: 20px; /* Orta bölümün üstten biraz aşağıda başlaması */
+  top:0;
+  position: relative;
 }
 
 /* Profil Resmi Ayarları */
@@ -269,6 +271,117 @@ input:checked + .slider:before {
 .name {
   font-size: 1.8em;
   color: var(--primary-color);
+}
+
+
+/* === Diğer Sekmelerin Düğmeleri === */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Düğmeler arasında boşluk */
+  margin-top: 20px; /* Profil resminin altına boşluk */
+}
+
+.nav-button {
+  text-decoration: none; /* Alt çizgi olmadan */
+  font-size: 1.1em; /* Yazı boyutunu ayarla */
+  color: var(--primary-color); /* Tema rengi */
+  padding: 10px 20px; /* Düğme iç boşlukları */
+  border: 2px solid var(--primary-color); /* Düğme kenarlığı */
+  border-radius: 25px; /* Köşeleri yuvarlat */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Geçiş efekti */
+}
+
+.nav-button:hover {
+  background-color: var(--primary-color); /* Hover sırasında dolgu rengi */
+  color: white; /* Hover sırasında yazı rengi */
+  transform: translateY(-2px); /* Hover sırasında hafif yukarı kayma */
+}
+
+/* Karanlık mod için buton stil ayarları */
+[data-theme="dark"] .nav-button {
+  color: var(--text-color); /* Karanlık modda yazı rengi */
+  border-color: var(--text-color); /* Karanlık modda kenarlık rengi */
+}
+
+[data-theme="dark"] .nav-button:hover {
+  background-color: var(--text-color); /* Karanlık modda hover dolgu rengi */
+  color: var(--bg-color); /* Yazı rengi */
+}
+
+/* === ABOUT ME ve ALT BÖLÜMLERİ İÇİN STİL DÜZENLEMELERİ === */
+
+/* Bölüm Kartları (About Me, Education, Skills vb.) */
+section {
+  padding: 20px 30px; /* İçerik boşlukları */
+  margin: 20px 0; /* Bölümler arasında üst-alt boşluk */
+  border-radius: 15px; /* Kenarları yuvarla */
+  border: 1px solid var(--border-color); /* Kenarlık */
+  background: var(--secondary-color); /* Kart arka plan rengi */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Hafif gölge */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-5px); /* Hover sırasında yukarı kayma efekti */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge efekti */
+}
+
+/* Bölüm Başlıkları (h2) */
+section h2 {
+  font-size: 1.8em; /* Başlık boyutu */
+  color: var(--primary-color); /* Başlık rengi */
+  margin-bottom: 15px; /* Başlık ile içerik arasındaki boşluk */
+  border-bottom: 2px solid var(--border-color); /* Başlık altında ince çizgi */
+  padding-bottom: 10px; /* Alt çizgi ile mesafe */
+}
+
+/* Paragraflar (p) */
+section p {
+  font-size: 1.1em; /* Metin boyutu */
+  line-height: 1.7; /* Satır aralığı */
+  margin: 10px 0; /* Paragraflar arası boşluk */
+  color: var(--text-color); /* Metin rengi */
+}
+
+/* Listeler (Skills ve Work Experience gibi bölümler) */
+section ul {
+  padding-left: 20px; /* Liste içeriğini içeri çek */
+}
+
+section ul li {
+  margin-bottom: 10px; /* Liste elemanları arası boşluk */
+  font-size: 1.1em; /* Liste elemanlarının metin boyutu */
+}
+
+/* === RESPONSIVE TASARIM === */
+@media (max-width: 768px) {
+  section {
+    padding: 15px; /* Küçük ekranlarda bölüm iç boşluğu */
+    margin: 15px 0; /* Küçük ekranlarda bölümler arası boşluk */
+  }
+
+  section h2 {
+    font-size: 1.5em; /* Küçük ekranlarda başlık boyutunu küçült */
+  }
+
+  section p, section li {
+    font-size: 1em; /* Küçük ekranlarda metin boyutunu küçült */
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 10px; /* Daha küçük ekranlarda bölüm iç boşluğunu daha da azalt */
+  }
+
+  section h2 {
+    font-size: 1.3em; /* Başlık boyutunu daha da küçült */
+  }
+
+  section p, section li {
+    font-size: 0.9em; /* Daha küçük ekranlar için metin boyutunu daha da küçült */
+  }
 }
 
 

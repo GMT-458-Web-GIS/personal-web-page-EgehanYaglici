@@ -1,0 +1,338 @@
+/* === GENEL STİLLER === */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Slider Temel Stili */
+
+.real-time-container {
+  position: relative; /* Konteyner içinde slider'ın konumlandırılmasını sağlamak için */
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 10px; /* En üstte */
+  right: 10px; /* En sağda */
+  z-index: 10; /* Diğer elemanların üstünde görünmesi için */
+}
+
+
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Sayfa Temel Renk Geçiş Stilleri */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #444444;
+  --primary-color: #5c7cfa;
+  --secondary-color: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #2c2c2c;
+  --text-color: #ffffff;
+  --primary-color: #1abc9c;
+  --secondary-color: #333;
+  --border-color: #444;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+
+.container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--secondary-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Header Stilleri */
+header h1 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+header p {
+  text-align: center;
+  color: var(--text-color);
+  max-width: 700px;
+  margin: 10px auto 30px;
+}
+
+/* === DAİRE VE RESİM STİLLERİ === */
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 50px auto;
+}
+
+svg {
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+
+.central-circle {
+  fill: var(--primary-color);
+  stroke: var(--secondary-color);
+  stroke-width: 5;
+}
+
+.st {
+  fill: none;
+  stroke: rgba(92, 124, 250, 0.5);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.st--small {
+  stroke-width: 2;
+  stroke-dasharray: 12, 12;
+}
+
+.st--medium {
+  stroke-width: 4;
+  stroke-dasharray: 24, 24;
+}
+
+.st--xlarge {
+  stroke-width: 4;
+  stroke-dasharray: 100, 400;
+}
+
+/* Görsellerin Başlangıç Stilleri */
+.outer-images {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transform-origin: center;
+}
+
+.circle-image {
+  width: 60px; /* Görsellerin boyutlarını artırdık */
+  height: 60px; /* Görsellerin boyutlarını artırdık */
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translate(0, 0); /* Başlangıçta merkezde */
+}
+
+/* Daire Üzerine Gelindiğinde Görsellerin Çıkışı */
+.circle-container:hover .circle-image {
+  opacity: 1; /* Görseller görünür olacak */
+}
+
+/* 9 Görsel İçin Dairesel Yerleşim */
+.circle-container:hover .circle-image:nth-child(1) {
+  transform: translate(0, -180px) rotate(0deg); /* Yukarı */
+}
+
+.circle-container:hover .circle-image:nth-child(2) {
+  transform: translate(135px, -135px) rotate(40deg); /* 40 derece yukarı çapraz */
+}
+
+.circle-container:hover .circle-image:nth-child(3) {
+  transform: translate(180px, 0) rotate(80deg); /* Sağ */
+}
+
+.circle-container:hover .circle-image:nth-child(4) {
+  transform: translate(135px, 135px) rotate(120deg); /* Aşağı sağ çapraz */
+}
+
+.circle-container:hover .circle-image:nth-child(5) {
+  transform: translate(0, 180px) rotate(160deg); /* Aşağı */
+}
+
+.circle-container:hover .circle-image:nth-child(6) {
+  transform: translate(-135px, 135px) rotate(200deg); /* Aşağı sol çapraz */
+}
+
+.circle-container:hover .circle-image:nth-child(7) {
+  transform: translate(-180px, 0) rotate(240deg); /* Sol */
+}
+
+.circle-container:hover .circle-image:nth-child(8) {
+  transform: translate(-135px, -135px) rotate(280deg); /* Yukarı sol çapraz */
+}
+
+.circle-container:hover .circle-image:nth-child(9) {
+  transform: translate(0, -180px) rotate(320deg); /* Yukarıya */
+}
+
+/* Görsellerin ve Dairenin Dönme Animasyonu */
+.circle-container:hover .outer-images {
+  animation: rotate 8s linear infinite; /* Görseller daire ile birlikte dönmeye devam edecek */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); /* 360 derece dönüş */
+  }
+}
+
+
+/* === POPUP STİLLERİ === */
+.popup {
+  display: none; /* Başlangıçta gizli */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Arkaplan karartma */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.popup-content {
+  width: 80%; /* Genişliği artırdık */
+  max-width: 1000px; /* Maksimum genişlik belirlendi */
+  height: 70%; /* Yükseklik daha fazla yapıldı */
+  max-height: 700px; /* Maksimum yüksekliği ayarladık */
+  padding: 20px;
+  background: var(--secondary-color);
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* İçerik taşarsa görünmeyecek */
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.popup-image {
+  max-width: 80%; /* Görselin genişliğini sınırla */
+  max-height: 500px; /* Görselin yüksekliği sınırla */
+  margin: 20px 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain; /* Görselin orantılı bir şekilde görünmesini sağlar */
+}
+
+.popup-description {
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+.popup-controls {
+  position: absolute; /* Butonları sabitlemek için absolute kullanıyoruz */
+  bottom: 20px; /* Pop-up'ın altından 20px yukarıda */
+  left: 50%; /* Sol tarafa göre ortalamak için */
+  transform: translateX(-50%); /* Gerçek ortalamayı sağlamak için translate */
+  display: flex; /* Flexbox ile yatayda hizala */
+  justify-content: center; /* Butonları yatayda ortala */
+}
+
+
+.popup-controls button {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  background: var(--primary-color);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px; /* Buton yazı boyutunu artırdık */
+}
+
+
+
+/* === ALT BÖLME STİLLERİ === */
+.info-section {
+  margin-top: 50px;
+  padding: 30px;
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.info-section h2 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.info-section p {
+  text-align: center;
+  color: var(--text-color);
+}
+
+
