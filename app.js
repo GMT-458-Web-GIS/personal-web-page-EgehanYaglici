@@ -34,10 +34,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const phoneNumberElement = document.querySelector('.phone-number');
   const copyMessage = document.getElementById('copy-message');
 
+  // Kopyalanacak numarayı sabit bir değişken olarak tanımla
+  const phoneNumber = "+90 553 416 31 03"; // Gerçek telefon numarası
+  const initialText = "Click For Copy Number!";
+
+  // Başlangıçta "Click For Copy Number!" yazısını göster
+  phoneNumberElement.textContent = initialText;
+
+  // Mouse ile üzerine gelindiğinde gerçek telefon numarasını göster
+  phoneContainer.addEventListener('mouseenter', () => {
+    phoneNumberElement.style.opacity = 0; // Önce opacity 0 yap
+    setTimeout(() => {
+      phoneNumberElement.textContent = phoneNumber; // Metni değiştir
+      phoneNumberElement.style.opacity = 1; // Sonra tekrar görünür yap
+      phoneContainer.classList.add('show-number'); // Animasyonu etkinleştir
+    }, 300); // 0.3 saniye bekle, sonra metni değiştir ve görünür yap
+  });
+
+  // Mouse çekildiğinde tekrar "Click For Copy Number!" yazısına dön
+  phoneContainer.addEventListener('mouseleave', () => {
+    phoneNumberElement.style.opacity = 0; // Önce opacity 0 yap
+    setTimeout(() => {
+      phoneNumberElement.textContent = initialText; // Metni değiştir
+      phoneNumberElement.style.opacity = 1; // Sonra tekrar görünür yap
+      phoneContainer.classList.remove('show-number'); // Animasyonu kapat
+    }, 300); // 0.3 saniye bekle, sonra metni değiştir ve görünür yap
+  });
+
   // Telefon numarasını kopyalama işlevi
   phoneContainer.addEventListener('click', () => {
-    // Numara metnini seç ve kopyala
-    const phoneNumber = phoneNumberElement.textContent.trim();
+    // Sabit değişkende tuttuğumuz gerçek telefon numarasını kopyala
     navigator.clipboard.writeText(phoneNumber)
       .then(() => {
         // Kopyalama işlemi başarılı olduğunda mesajı göster
@@ -59,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Leaflet.js ile haritayı başlatma ve Hacettepe Üniversitesi Harita Mühendisliği Bölümü'nü gösterme
-const map = L.map('map').setView([39.86564155076201, 32.733861597060915], 17); // Güncellenmiş koordinatlar eklendi
+const map = L.map('map').setView([39.86564155076201, 32.733861597060915], 17); // Güncellenmiş koordinatlar
 
 // OpenStreetMap taban harita katmanı ekleme
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -67,6 +93,17 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Hacettepe Üniversitesi Harita Mühendisliği Binası için marker ekleme
-const marker = L.marker([39.86564155076201, 32.733861597060915]).addTo(map)
-  .bindPopup('Department of Geomatics Engineering') // Popup mesajı güncellendi
-  .openPopup();
+const marker = L.marker([39.86564155076201, 32.733861597060915]).addTo(map);
+
+// Popup mesajını oluştur
+const popup = L.popup().setContent('Department of Geomatics Engineering');
+
+// Marker üzerine gelince popup mesajını gösterme
+marker.on('mouseover', () => {
+  marker.bindPopup(popup).openPopup(); // Popup mesajını göster
+});
+
+// Marker üzerinden çıkılınca popup mesajını kapatma
+marker.on('mouseout', () => {
+  marker.closePopup(); // Popup mesajını gizle
+});

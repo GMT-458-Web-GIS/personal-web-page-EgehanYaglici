@@ -2,10 +2,10 @@
 .phone-container {
   display: flex;
   align-items: center;
+  justify-content: center; /* Merkezi hizalama */
   gap: 10px;
   cursor: pointer;
   position: relative;
-  justify-content: center; /* Merkezi hizalama */
   padding: 10px;
 }
 
@@ -23,47 +23,24 @@
   color: #2c3e50;
   position: relative;
   overflow: hidden;
+  opacity: 1; /* Başlangıçta görünür */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Geçiş animasyonu */
 }
 
-.phone-number .number {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 1; /* Başlangıçta 'Click for Copy Me!' görünür */
+/* Mouse Üzerine Gelmeden Önce */
+.phone-container .phone-number {
+  transform: translateY(0); /* Başlangıç konumu */
 }
 
 /* Hover Durumunda Animasyon */
-.phone-container:hover .number {
-  /* Hover durumunda 'Click for Copy Me!' yazısı kaybolur ve numara görünür */
-  opacity: 0; /* Başlangıç metni kaybolur */
-  transform: translateY(-20px); /* Yukarı kaydırma efekti */
+.phone-container:hover .phone-number {
+  transform: translateY(-10px); /* Yukarı kaydırma efekti */
 }
 
-/* Hover Durumunda Telefon Numarasının Ortaya Çıkması */
-.phone-container:hover .phone-number::after {
-  content: "+90 553 416 31 03"; /* Telefon numarası eklendi */
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.9em;
-  color: #2c3e50;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0;
-  transform: translateY(20px); /* İlk başta aşağıda konumlandırıldı */
-}
-
-.phone-container:hover .phone-number::after {
-  opacity: 1; /* Hover durumunda numara görünür hale gelir */
+/* Telefon Numarasının Hover Durumunda Ortaya Çıkması */
+.phone-container.show-number .phone-number {
+  opacity: 1; /* Hover olduğunda numara görünür hale gelir */
   transform: translateY(0); /* Yukarı doğru çıkar */
-}
-/* Hover Durumunda Telefon Simgesinin Animasyonu */
-.phone-container:hover .phone-icon {
-  opacity: 1; /* Hover durumunda simge görünür hale gelir */
-  transform: translateY(-5px) scale(1.1); /* Hafif yukarı kayma ve büyütme efekti */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Geçiş efektleri */
 }
 
 /* Kopyalama Mesajı */
@@ -82,7 +59,7 @@
   font-size: 1em;
 }
 
-/* Kopyalama Mesajı Görünür Durum */
+/* Kopyalama Mesajı Görünürlüğü */
 .copy-message.show {
   opacity: 1;
   transform: translateY(0);
