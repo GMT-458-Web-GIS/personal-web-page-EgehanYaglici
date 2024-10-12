@@ -1,0 +1,54 @@
+/* Genel Stil Ayarları */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Başlık Stili */
+header h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+/* Harita ve Daire Stili */
+.circle-container {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Teması */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #444444;
+  --primary-color: #5c7cfa;
+  --secondary-color: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #2c2c2c;
+  --text-color: #ffffff;
+  --primary-color: #1abc9c;
+  --secondary-color: #333;
+  --border-color: #444;
+}
+
+body[data-theme="dark"] {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
