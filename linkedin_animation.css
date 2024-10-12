@@ -5,7 +5,7 @@
   gap: 5px; /* İkon ile yazı arasındaki boşluk */
   text-decoration: none;
   color: #0077b5; /* LinkedIn mavisi */
-  padding: 5px 10px; /* Kenar boşlukları daraltıldı */
+  padding: 5px 10px; /* Kenar boşlukları daraltma */
   border: 2px solid #0077b5; /* Sınır rengi */
   border-radius: 25px; /* Köşeleri yuvarlak */
   transition: background-color 0.3s ease, transform 0.3s ease;

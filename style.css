@@ -215,11 +215,11 @@ input:checked + .slider:before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
 }
 
-/* Profil Resmi İçindeki Resim */
+/* Profil Resmi İçindeki Resim Ayarlı*/
 .profile-pic img {
   width: 105%; /* Resmi kapsayıcı genişliğe oturt */
   height: auto; /* Yüksekliği otomatik ayarla */
-  display: block; /* Görüntüyü blok öğe yap */
+  display: block; /* Görüntüyü blok öğe yapma */
 }
 
 
@@ -249,7 +249,7 @@ input:checked + .slider:before {
 
 /* LinkedIn İkonunun Email ile Arasında Ekstra Boşluk */
 .contact-info li:nth-child(2) { /* contact-info'nun 2. öğesi (LinkedIn) */
-  margin-top: 20px; /* Yukarıdan ekstra boşluk ekle */
+  margin-top: 20px; /* Yukarıdan ekstra boşluk ekleme */
 }
 
 
@@ -264,7 +264,7 @@ input:checked + .slider:before {
 .contact-link:hover, .linkedin-link:hover, .phone-container:hover {
   background: none;
   color: var(--primary-color);
-  transform: none; /* Hover sırasında herhangi bir büyüme efekti yok */
+  transform: none;
 }
 
 
@@ -288,7 +288,7 @@ input:checked + .slider:before {
   color: var(--primary-color); /* Tema rengi */
   padding: 10px 20px; /* Düğme iç boşlukları */
   border: 2px solid var(--primary-color); /* Düğme kenarlığı */
-  border-radius: 25px; /* Köşeleri yuvarlat */
+  border-radius: 25px; /* Köşeleri yuvarlatma */
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Geçiş efekti */
 }
 
@@ -324,7 +324,7 @@ section {
 
 section:hover {
   transform: translateY(-5px); /* Hover sırasında yukarı kayma efekti */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge efekti */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* gölge efekti */
 }
 
 /* Bölüm Başlıkları (h2) */
@@ -344,7 +344,7 @@ section p {
   color: var(--text-color); /* Metin rengi */
 }
 
-/* Listeler (Skills ve Work Experience gibi bölümler) */
+/* Listeler (Skills ve Work Experience) */
 section ul {
   padding-left: 20px; /* Liste içeriğini içeri çek */
 }
@@ -362,25 +362,25 @@ section ul li {
   }
 
   section h2 {
-    font-size: 1.5em; /* Küçük ekranlarda başlık boyutunu küçült */
+    font-size: 1.5em;
   }
 
   section p, section li {
-    font-size: 1em; /* Küçük ekranlarda metin boyutunu küçült */
+    font-size: 1em;
   }
 }
 
 @media (max-width: 600px) {
   section {
-    padding: 10px; /* Daha küçük ekranlarda bölüm iç boşluğunu daha da azalt */
+    padding: 10px;
   }
 
   section h2 {
-    font-size: 1.3em; /* Başlık boyutunu daha da küçült */
+    font-size: 1.3em;
   }
 
   section p, section li {
-    font-size: 0.9em; /* Daha küçük ekranlar için metin boyutunu daha da küçült */
+    font-size: 0.9em;
   }
 }
 

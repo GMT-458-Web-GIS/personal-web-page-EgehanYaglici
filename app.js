@@ -132,3 +132,85 @@ document.addEventListener('DOMContentLoaded', () => {
     marker.closePopup(); // Popup mesajını gizle
   });
 });
+
+// Zarf ve e-posta seçenekleriyle ilgili işlevler
+let emailTimeout;
+
+function toggleEmailOptions() {
+  const envelope = document.querySelector('.envelope-container');
+  const emailOptions = document.getElementById('email-options');
+
+  // Zarfı aktif yap ve butonları göster
+  if (envelope.classList.contains('active')) {
+    // Zarf kapanıyor, animasyonla geri git
+    envelope.classList.remove('active');
+    envelope.classList.add('closing');
+
+    // Zarf kapanırken seçenekleri gizle
+    setTimeout(() => {
+      emailOptions.style.display = 'none';
+      envelope.classList.remove('closing');
+    }, 500); // Animasyonun süresi kadar bekle (500ms)
+  } else {
+    // Zarf açılıyor, butonlar görünsün ve animasyon başlasın
+    envelope.classList.add('active');
+    emailOptions.style.display = 'flex';
+
+    // 5 saniye sonra seçenekler kapanacak
+    emailTimeout = setTimeout(() => {
+      closeEmailOptions();
+    }, 5000);
+  }
+}
+
+function closeEmailOptions() {
+  const envelope = document.querySelector('.envelope-container');
+  const emailOptions = document.getElementById('email-options');
+
+  envelope.classList.remove('active');
+  envelope.classList.add('closing');
+
+  // 500ms sonra butonları tamamen gizle
+  setTimeout(() => {
+    emailOptions.style.display = 'none';
+    envelope.classList.remove('closing');
+  }, 500);
+
+  // Eğer zarf kapanırsa zamanlayıcıyı temizle
+  if (emailTimeout) {
+    clearTimeout(emailTimeout);
+  }
+}
+
+// Butonların tamamını tıklanabilir hale getirmek için işlev
+function makeButtonsClickable() {
+  const buttons = document.querySelectorAll('.email-option');
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      const link = button.querySelector('a');
+      if (link) {
+        window.location.href = link.href; // Butona tıklanınca bağlantıya yönlendir
+      }
+    });
+  });
+}
+
+// E-posta seçeneklerinden birini seçince zarf kapanmasın
+const emailOptionsContainer = document.getElementById('email-options');
+
+emailOptionsContainer.addEventListener('mouseenter', () => {
+  // Fare butonların üzerindeyse zarf kapanmasın
+  clearTimeout(emailTimeout);
+});
+
+emailOptionsContainer.addEventListener('mouseleave', () => {
+  // Fare butonlardan ayrıldığında tekrar zamanlayıcı başlat
+  emailTimeout = setTimeout(() => {
+    closeEmailOptions();
+  }, 5000);
+});
+
+// Sayfa yüklendiğinde butonları tıklanabilir yap
+document.addEventListener('DOMContentLoaded', () => {
+  makeButtonsClickable(); // Butonları tıklanabilir yap
+});

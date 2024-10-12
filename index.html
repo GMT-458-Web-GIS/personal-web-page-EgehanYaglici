@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Egehan Yaglici's Resume">
   <title>Egehan Yaglici - CV</title>
-  <!-- Link to the external stylesheets -->
+  <!-- Linking external stylesheets -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mail_animation.css">
   <link rel="stylesheet" href="linkedin_animation.css">
   <link rel="stylesheet" href="phone_number_animation.css">
   <!-- Include FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Leaflet CSS -->
+  <!-- Leaflet CSS for map rendering -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body data-theme="light">
 <div class="container">
   <header>
-    <h1>Welcome To My Page</h1> <!-- Başlık yazısı olarak 'Welcome To My Page' eklendi -->
+    <h1>Welcome To My Page</h1> <!-- Title text updated to 'Welcome To My Page' -->
     <div class="theme-toggle">
       <span>🌞</span>
       <label class="theme-switch">
@@ -29,35 +29,50 @@
     </div>
   </header>
 
-  <!-- Alt Kısım (3 Bölüm Yapısı) -->
+  <!-- Main Content (3 Section Layout) -->
   <div class="content-wrapper">
-    <!-- Sol Bölüm: Contact Information -->
+    <!-- Left Section: Contact Information -->
     <section class="left-section">
       <h2>Contact Information</h2>
       <ul class="contact-info">
-        <!-- Email link with animated mailbox -->
+        <!-- Email options will open with an envelope animation on click -->
         <li>
-          <a href="mailto:egehanyaglici007@gmail.com" class="contact-link">
-            <div class="envelope-container">
-              <div class="envelope">
-                <div class="envelope-flap"></div>
-                <div class="letter">
-                  <div class="letter-header"></div>
-                  <div class="letter-body">
-                    <div class="line"></div>
-                    <div class="line short"></div>
-                    <div class="line"></div>
-                    <div class="line short"></div>
-                  </div>
-                  <div class="letter-footer"></div>
-                  <div class="stamp">
-                    <div class="stamp-inner"></div>
+          <div class="email-options-container">
+            <div class="envelope-wrapper">
+              <div class="envelope-container" onclick="toggleEmailOptions()">
+                <div class="envelope">
+                  <div class="envelope-flap"></div>
+                  <div class="letter">
+                    <div class="letter-header"></div>
+                    <div class="letter-body">
+                      <div class="line"></div>
+                      <div class="line short"></div>
+                      <div class="line"></div>
+                      <div class="line short"></div>
+                    </div>
+                    <div class="letter-footer"></div>
+                    <div class="stamp">
+                      <div class="stamp-inner"></div>
+                    </div>
                   </div>
                 </div>
+                <div class="shadow"></div>
               </div>
-              <div class="shadow"></div>
+
+              <!-- Email options (buttons will pop out of the envelope) -->
+              <div class="email-options" id="email-options">
+                <div class="email-option email-default">
+                  <a href="mailto:egehanyaglici007@gmail.com">E-mail</a>
+                </div>
+                <div class="email-option email-gmail">
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=egehanyaglici007@gmail.com" target="_blank">G-mail</a>
+                </div>
+                <div class="email-option email-outlook">
+                  <a href="https://outlook.office.com/mail/deeplink/compose?to=egehanyaglici007@gmail.com" target="_blank">Outlook</a>
+                </div>
+              </div>
             </div>
-          </a>
+          </div>
         </li>
 
         <!-- LinkedIn link with animation -->
@@ -80,9 +95,9 @@
             <div class="phone-icon">
               <i class="fas fa-phone-alt"></i>
             </div>
-            <!-- Başlangıçta 'Click for Copy Me!' metni ve Hover ile numara -->
+            <!-- Initially 'Click for Copy Me!' text and number on hover -->
             <div class="phone-number">
-              <span class="number">Click For Copy Number!</span> <!-- Numara metnini burada değiştirdik -->
+              <span class="number">Click For Copy Number!</span> <!-- Updated phone text -->
             </div>
           </div>
           <div id="copy-message" class="copy-message">
@@ -92,28 +107,27 @@
       </ul>
     </section>
 
-    <!-- Orta Bölüm: Profil Resmi ve İsim -->
-    <!-- Orta Bölüm: Profil Resmi ve İsim -->
+    <!-- Middle Section: Profile Picture and Name -->
     <section class="center-section">
       <div class="profile-pic">
         <img src="profile_pic.jpeg" alt="Profile Picture" />
       </div>
       <h2 class="name">Egehan Yaglici</h2>
 
-      <!-- Yeni Düğmeler Eklendi -->
+      <!-- New Buttons Added -->
       <div class="button-container">
-        <!-- Projects Butonu -->
+        <!-- Projects Button -->
         <a href="projects.html" class="nav-button">Projects</a>
-        <!-- Favorite Places Butonu -->
+        <!-- Favorite Places Button -->
         <a href="fav_places.html" class="nav-button">Favorite Places</a>
       </div>
     </section>
 
-    <!-- Sağ Bölüm: Harita -->
+    <!-- Right Section: Map -->
     <section class="right-section">
       <h2>My University Department!</h2>
-      <!-- Harita Konteyneri -->
-      <div id="map"></div> <!-- "style" özelliğini kaldırdık -->
+      <!-- Map Container -->
+      <div id="map"></div> <!-- Removed inline "style" attribute -->
     </section>
 
   </div>
@@ -169,12 +183,10 @@
   </footer>
 </div>
 
-
-<!-- Leaflet JS -->
+<!-- Leaflet JS for map rendering -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<!-- Link to the external JavaScript file -->
+<!-- Linking external JavaScript file -->
 <script src="app.js" defer></script>
 
 </body>
 </html>
-
