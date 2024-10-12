@@ -1,5 +1,5 @@
 // Cesium Ion API anahtarınızı buraya ekleyin
-Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0Y2U2MjVmOS00M2Y4LTRlOTItOWVmNy1iYWJlYzFmNzExMWYiLCJpZCI6MjQ3NjE1LCJpYXQiOjE3Mjg3NDIyNjl9.jdyVwQTRZu228WPpDzHHLCG3yVtXbeCyKU_VxqDuQXo';
+Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZTkzMmU4OC02ODc5LTRiOWEtYTBjZC0xOTI4MGIwMjAwYjgiLCJpZCI6MjQ3NjE1LCJpYXQiOjE3Mjg3NDA1NTN9.HiFA6eezcrD3R7rcRE-sltZFLWjQi2NXwDdZG57Gtng';
 
 // Cesium 3D Dünya Haritasını Başlatma
 const viewer = new Cesium.Viewer('cesiumContainer', {
