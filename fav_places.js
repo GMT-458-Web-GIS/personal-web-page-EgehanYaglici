@@ -1,4 +1,4 @@
-// Cesium Ion API anahtarınızı buraya ekleyin
+// Cesium Ion API anahtarı bu token sadece kişisel web sayfamda çalışacak şekilde başarıyla ayarlanmıştır
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0Y2U2MjVmOS00M2Y4LTRlOTItOWVmNy1iYWJlYzFmNzExMWYiLCJpZCI6MjQ3NjE1LCJpYXQiOjE3Mjg3NDIyNjl9.jdyVwQTRZu228WPpDzHHLCG3yVtXbeCyKU_VxqDuQXo';
 
 // Cesium 3D Dünya Haritasını Başlatma
