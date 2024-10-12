@@ -1,2 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/O2YWE8TK)
+### Website is finished right now there are few possible upgrades.
+- There are no dynamic light/dark mode for the pages. Main and Project page have this mode not Favorite Places
 
+### Website will publish tomorrow, in this part. I dont want to make new features because this is the my first try :D. I guess this site will perform good.
