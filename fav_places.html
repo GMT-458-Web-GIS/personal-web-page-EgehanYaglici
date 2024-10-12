@@ -13,10 +13,24 @@
 <div class="container">
   <header>
     <h1>Travel With Me!</h1>
+    <p class="subtitle">Click on the locations to see images! I only mark the city locations, you need to find the exact places where these photos were taken. That's your adventure!!</p>
+
   </header>
 
   <!-- 3D Harita İçin Div -->
-  <div id="cesiumContainer" class="circle-container"></div>
+  <div id="cesiumContainer"></div>
+
+  <!-- Görsel Galeri İçin Popup -->
+  <div class="large-popup" id="largePopup" style="display: none;">
+    <div class="popup-content">
+      <img id="largeImage" src="" alt="Large Image">
+      <div class="image-navigation">
+        <button onclick="prevImage()">Previous</button>
+        <button onclick="nextImage()">Next</button>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Cesium JS -->

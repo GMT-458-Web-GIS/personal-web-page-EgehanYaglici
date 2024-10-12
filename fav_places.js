@@ -1,47 +1,96 @@
-// Cesium Ion API anahtarı bu token sadece kişisel web sayfamda çalışacak şekilde başarıyla ayarlanmıştır
+// Cesium Ion API anahtarını başkalarının da kullanabilmesi için açık hale getirdim bu key ile 3D animasyonlu kontrol edilebilir bir dünya haritasını sietnize koyabilirsiniz!
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0Y2U2MjVmOS00M2Y4LTRlOTItOWVmNy1iYWJlYzFmNzExMWYiLCJpZCI6MjQ3NjE1LCJpYXQiOjE3Mjg3NDIyNjl9.jdyVwQTRZu228WPpDzHHLCG3yVtXbeCyKU_VxqDuQXo';
+
 
 // Cesium 3D Dünya Haritasını Başlatma
 const viewer = new Cesium.Viewer('cesiumContainer', {
-  imageryProvider: Cesium.createWorldImagery(), // Dünya kaplaması ekleniyor
-  baseLayerPicker: false, // Katman seçici gizli
-  geocoder: false, // Geocoder gizli
-  homeButton: false, // Ana sayfa butonu gizli
-  sceneModePicker: false, // 2D/3D modları gizli
-  navigationHelpButton: false, // Yardım butonu gizli
-  animation: false, // Animasyon paneli gizli
-  timeline: false // Zaman çizelgesi gizli
+  imageryProvider: Cesium.createWorldImagery(),
+  baseLayerPicker: false,
+  geocoder: false,
+  homeButton: false,
+  sceneModePicker: false,
+  navigationHelpButton: false,
+  animation: false,
+  timeline: false
 });
 
-// İşaretlenecek koordinatlar ve resimler
-const favoritePlaces = [
-  { coords: [48.8566, 2.3522], img: 'paris.jpg', desc: 'Paris, France' },
-  { coords: [40.7128, -74.0060], img: 'newyork.jpg', desc: 'New York, USA' },
-  { coords: [35.6895, 139.6917], img: 'tokyo.jpg', desc: 'Tokyo, Japan' },
-  { coords: [51.5074, -0.1278], img: 'london.jpg', desc: 'London, UK' },
-  { coords: [34.0522, -118.2437], img: 'la.jpg', desc: 'Los Angeles, USA' }
+// Görsel galerisi için mevcut indeks
+let currentIndex = 0;
+let currentPlaceImages = [];
+
+// Varşova resimlerini tutan dizi
+const warsawImages = [
+  'fav_places_images/warsaw1.png',
+  'fav_places_images/warsaw2.png',
+  'fav_places_images/warsaw3.png'
 ];
 
-// Her bir koordinata işaret ekleme
-favoritePlaces.forEach(place => {
+// İşaretlenecek yerler (Varşova, Gdansk, Ankara)
+const favoritePlaces = [
+  { coords: [52.2297, 21.0122], images: warsawImages, desc: 'Warsaw, Poland' },
+  { coords: [54.3520, 18.6466], images: ['fav_places_images/gdansk.png'], desc: 'Gdansk, Poland' },
+  { coords: [39.9334, 32.8597], images: ['fav_places_images/ankara.png'], desc: 'Ankara, Turkey' }
+];
+
+// Benzersiz kimlik atama ve tıklama işlevi
+favoritePlaces.forEach((place, index) => {
   const pinBuilder = new Cesium.PinBuilder();
   const billboard = viewer.entities.add({
     name: place.desc,
     position: Cesium.Cartesian3.fromDegrees(place.coords[1], place.coords[0]),
     billboard: {
-      image: pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
+      image: pinBuilder.fromColor(Cesium.Color.RED, 48).toDataURL(),
       verticalOrigin: Cesium.VerticalOrigin.BOTTOM
     }
   });
 
-  // İşarete tıklanınca popup açılması
-  billboard.description = `
-    <div style="text-align:center;">
-      <h3>${place.desc}</h3>
-      <img src="images/${place.img}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
-    </div>
-  `;
+  // İşaretçiye tıklama olayını doğrudan tanımlıyoruz
+  billboard.placeIndex = index; // Her birine placeIndex atıyoruz
 });
 
-// Harita görünümü genişletme
-viewer.camera.flyHome(0);
+// Tıklama olayı
+viewer.screenSpaceEventHandler.setInputAction(function(click) {
+  const pickedObject = viewer.scene.pick(click.position);
+
+  // Eğer bir entity seçildiyse ve bu entity bir billboard ise popup açılır
+  if (Cesium.defined(pickedObject) && Cesium.defined(pickedObject.id) && pickedObject.id.placeIndex !== undefined) {
+    openPopup(pickedObject.id.placeIndex);
+  }
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+// Görsel galerisi popup'ını açma
+function openPopup(placeIndex) {
+  currentPlaceImages = favoritePlaces[placeIndex].images;
+  currentIndex = 0;
+  showImage(currentPlaceImages[currentIndex]);
+  const popup = document.getElementById('largePopup');
+  popup.style.display = 'flex'; // Popup görünür hale gelir
+}
+
+// Görüntüleri gösterme
+function showImage(imageUrl) {
+  document.getElementById('largeImage').src = imageUrl;
+}
+
+// Önceki resme gitme
+function prevImage() {
+  currentIndex = (currentIndex - 1 + currentPlaceImages.length) % currentPlaceImages.length;
+  showImage(currentPlaceImages[currentIndex]);
+}
+
+// Sonraki resme gitme
+function nextImage() {
+  currentIndex = (currentIndex + 1) % currentPlaceImages.length;
+  showImage(currentPlaceImages[currentIndex]);
+}
+
+// Popup'ı kapatma
+function closePopup() {
+  const popup = document.getElementById('largePopup');
+  popup.style.display = 'none'; // Popup gizlenir
+}
+
+// Harita görünümünü ayarla
+viewer.camera.flyTo({
+  destination: Cesium.Cartesian3.fromDegrees(32.8597, 45.9334, 7000000)
+});
