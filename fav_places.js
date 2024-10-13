@@ -14,7 +14,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   timeline: false
 });
 
-// Görsel galerisi için mevcut indeksleri
+// Görsel galerisi için mevcut indeks
 let currentIndex = 0;
 let currentPlaceImages = [];
 

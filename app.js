@@ -5,13 +5,34 @@ function toggleTheme() {
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
 
-  // Temayı değiştirme ve animasyon uygulama
+  // Geçerli tema bilgisini LocalStorage'da tut
   const currentTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   body.setAttribute('data-theme', currentTheme);
+  localStorage.setItem('theme', currentTheme);
+
+  // Tema geçişi sırasında animasyonları uygula
   container.style.transition = 'background 0.5s ease, color 0.5s ease, border-color 0.5s ease';
   header.style.transition = 'background 0.5s ease, color 0.5s ease';
-  footer.style.transition = 'background 0.5s ease, color 0.5s ease';
+  if (footer) {
+    footer.style.transition = 'background 0.5s ease, color 0.5s ease';
+  }
 }
+
+// Sayfa yüklendiğinde temayı uygula
+function applyThemeFromLocalStorage() {
+  const savedTheme = localStorage.getItem('theme') || 'light'; // Varsayılan olarak light tema
+  document.body.setAttribute('data-theme', savedTheme);
+
+  // Checkbox işaretleme durumu
+  const themeSwitch = document.getElementById('themeSwitch');
+  if (themeSwitch) {
+    themeSwitch.checked = (savedTheme === 'dark');
+  }
+}
+
+// Sayfa yüklendiğinde temayı uygula
+document.addEventListener('DOMContentLoaded', applyThemeFromLocalStorage);
+
 // LinkedIn animasyonu için metin değişimi kontrolü
 
 // LinkedIn Bağlantısını ve Yazı Elemanını Seçme

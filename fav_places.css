@@ -3,19 +3,118 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #444444;
+  --primary-color: #5c7cfa; /* Mor renk */
+  --secondary-color: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #2c2c2c;
+  --text-color: #ffffff;
+  --primary-color: #1abc9c; /* Dark mode için yeşil */
+  --secondary-color: #333;
+  --border-color: #444;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
 }
 
 .container {
   text-align: center;
   padding: 20px;
+  background: var(--secondary-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
 }
 
-h1 {
-  color: #5c7cfa;
+/* Travel With Me başlığı */
+header h1 {
+  background-color: var(--primary-color); /* Mor arka plan */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0;
 }
 
+/* Travel With Me başlığı karanlık modda da beyaz kalacak */
+[data-theme="dark"] header h1 {
+  background-color: var(--primary-color); /* Mor arka plan korunuyor */
+  color: white; /* Beyaz yazı devam edecek */
+}
+
+/* Subtitle (alt başlık) */
 .subtitle {
-  color: #444;
+  color: var(--text-color); /* Karanlık ve aydınlık modda uyumlu olacak */
+}
+
+
+/* Tema Geçiş Butonu */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
 
 /* Harita boyutu */
@@ -24,15 +123,15 @@ h1 {
   height: 80vh;
 }
 
-/* Popup stillleri */
+/* Popup stili */
 .large-popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%; /* Sabit genişlik */
+  width: 60%;
   max-width: 600px;
-  height: 700px; /* Sabit yükseklik */
+  height: 700px;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -40,30 +139,27 @@ h1 {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Butonların aşağıda kalmasını sağlar */
+  justify-content: space-between;
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Resim çerçevesi: Sabit boyutlu çerçeve */
+/* Dark mode için popup */
+[data-theme="dark"] .large-popup {
+  background-color: #333;
+  color: #fff;
+}
+
 .large-popup img {
-  width: 100%; /* Sabit genişlik */
-  height: 600px; /* Sabit yükseklik */
-  object-fit: contain; /* Resim çerçeveye sığacak şekilde gösterilir, taşma olmaz */
-  border-radius: 10px;
-  margin-bottom: 20px; /* Butonlarla resim arasında mesafe bırak */
-}
-
-/* Popup içindeki butonlar için düzen */
-.image-navigation {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  margin-top: auto; /* Butonların popup'ın altında sabitlenmesini sağlar */
-  align-items: center;
+  height: 600px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
+/* Popup içindeki butonlar */
 .image-navigation button {
   padding: 10px 20px;
   background-color: #5c7cfa;
@@ -89,6 +185,24 @@ h1 {
   background-color: #d32f2f;
 }
 
+/* Dark mode için buton geçişleri */
+[data-theme="dark"] .image-navigation button {
+  background-color: #1abc9c;
+}
+
+[data-theme="dark"] .image-navigation button:hover {
+  background-color: #16a085;
+}
+
+[data-theme="dark"] .close-btn {
+  background-color: #e74c3c;
+}
+
+[data-theme="dark"] .close-btn:hover {
+  background-color: #c0392b;
+}
+
 button:focus {
   outline: none;
 }
+

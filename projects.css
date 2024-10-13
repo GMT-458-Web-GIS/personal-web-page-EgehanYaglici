@@ -111,7 +111,17 @@ body {
 /* Header Stilleri */
 header h1 {
   text-align: center;
-  color: var(--primary-color);
+  background-color: var(--primary-color); /* Mor zemin */
+  color: white; /* Beyaz yazı */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Karanlık modda yeşil zemin ve beyaz yazı */
+[data-theme="dark"] header h1 {
+  background-color: var(--primary-color); /* Mor yerini yeşile bırakıyor */
+  color: white; /* Yazı rengi beyaz kalıyor */
 }
 
 header p {

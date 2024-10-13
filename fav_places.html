@@ -15,6 +15,15 @@
     <h1>Travel With Me!</h1>
     <p class="subtitle">Click on the locations to see images! I only mark the city locations, you need to find the exact places where these photos were taken. That's your adventure!!</p>
 
+    <!-- Tema geçiş butonu -->
+    <div class="theme-toggle">
+      <span>🌞</span>
+      <label class="theme-switch">
+        <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+        <span class="slider"></span>
+      </label>
+      <span>🌙</span>
+    </div>
   </header>
 
   <!-- 3D Harita İçin Div -->
@@ -36,5 +45,6 @@
 <!-- Cesium JS -->
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Cesium.js"></script>
 <script src="fav_places.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
