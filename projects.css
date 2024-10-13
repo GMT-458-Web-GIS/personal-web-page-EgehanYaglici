@@ -121,7 +121,7 @@ header h1 {
 /* Karanlık modda yeşil zemin ve beyaz yazı */
 [data-theme="dark"] header h1 {
   background-color: var(--primary-color); /* Mor yerini yeşile bırakıyor */
-  color: white; /* Yazı rengi beyaz kalıyor */
+  color: white; 
 }
 
 header p {
